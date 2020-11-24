@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const productionUrl = 'http://simple-socket-react-chat.herokuapp.com';
+const productionUrl = window.location.origin;
 const developmentUrl = 'http://localhost';
 export const HOST = process.env.NODE_ENV === 'production' ? productionUrl : developmentUrl;
 export const PORT = process.env.REACT_APP_PORT || process.env.PORT || 1234;

@@ -42,7 +42,7 @@ const ChatRoom = () => {
 	};
 
 	useEffect(() => {
-		const socket = sio(`${HOST}:${PORT}`);
+		const socket = sio.connect(`${HOST}:${PORT}`, { secure: true });
 		socket.on('get-message-server', (data) => {
 			if (data.roomId === currentRoom.id) {
 				dispatch(updateChatMessages(data));
