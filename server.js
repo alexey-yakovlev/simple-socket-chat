@@ -1,16 +1,16 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const app = express();
-const server = require('http').createServer(app);
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
-const io = require('socket.io')(server, {
-	cors: {
-		origin: '*',
-	},
-});
+const bodyParser = require('body-parser');
+
+const app = express();
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
 const PORT = process.env.PORT || 1234;
 server.listen(PORT, () => {
@@ -19,10 +19,6 @@ server.listen(PORT, () => {
 
 const rooms = {};
 const currentRoomMessages = {};
-
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 app.post('/createRoom', (req, res, next) => {
 	const room = {
