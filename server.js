@@ -12,7 +12,7 @@ const io = require('socket.io')(server, {
 	},
 });
 
-const PORT = process.env.SERVER_PORT || 1234;
+const PORT = process.env.PORT || 1234;
 server.listen(PORT, () => {
 	console.log(`Server started on port ::${PORT}`);
 });
