@@ -2,7 +2,7 @@ import * as actionTypes from './types';
 import axios from 'axios';
 
 // eslint-disable-next-line no-undef
-const PORT = process.env.REACT_APP_SERVER_PORT || 1234;
+//const PORT = process.env.REACT_APP_SERVER_PORT || 1234;
 export const createRoomRequest = () => {
 	return {
 		type: actionTypes.CREATE_ROOM_REQUEST,
@@ -26,7 +26,7 @@ export const createRoomError = (error) => {
 export const createRoom = (name) => async (dispatch) => {
 	dispatch(createRoomRequest());
 	try {
-		const response = await axios.post(`http://localhost:${PORT}/createRoom`, { name });
+		const response = await axios.post(`/createRoom`, { name });
 		dispatch(createRoomSuccess(response.data));
 	} catch (error) {
 		dispatch(createRoomError(error));
@@ -58,7 +58,7 @@ export const getRoomsError = (error) => {
 export const getRooms = () => async (dispatch) => {
 	dispatch(getRoomsRequest());
 	try {
-		const response = await axios.get(`http://localhost:${PORT}/rooms`);
+		const response = await axios.get(`/rooms`);
 		dispatch(getRoomsSuccess(response.data));
 	} catch (error) {
 		dispatch(getRoomsError(error));
@@ -90,7 +90,7 @@ export const joinRoomError = (error) => {
 export const joinRoom = (roomId) => async (dispatch) => {
 	dispatch(joinRoomRequest());
 	try {
-		const response = await axios.get(`http://localhost:${PORT}/rooms/${roomId}`);
+		const response = await axios.get(`/rooms/${roomId}`);
 		dispatch(joinRoomSuccess(response.data));
 	} catch (error) {
 		dispatch(joinRoomError(error));

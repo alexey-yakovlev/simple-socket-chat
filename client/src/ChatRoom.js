@@ -1,11 +1,10 @@
+/* eslint-disable no-undef */
 import React, { useReducer, useEffect } from 'react';
 import sio from 'socket.io-client';
+import { HOST, PORT } from './config';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateChatMessages } from './actions';
 import socket from './socket';
-
-// eslint-disable-next-line no-undef
-const PORT = process.env.REACT_APP_PORT || process.env.PORT || 1234;
 
 const ChatRoom = () => {
 	const { currentRoom, username, currentRoomMessages } = useSelector((state) => state);
@@ -43,7 +42,7 @@ const ChatRoom = () => {
 	};
 
 	useEffect(() => {
-		const socket = sio(`http://localhost:${PORT}`);
+		const socket = sio(`${HOST}:${PORT}`);
 		socket.on('get-message-server', (data) => {
 			if (data.roomId === currentRoom.id) {
 				dispatch(updateChatMessages(data));
