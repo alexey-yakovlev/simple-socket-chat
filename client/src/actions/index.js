@@ -1,6 +1,6 @@
 import * as actionTypes from './types';
 import axios from 'axios';
-import { HOST } from '../config';
+import { HOST, PORT } from '../config';
 
 export const createRoomRequest = () => {
 	return {
@@ -25,7 +25,7 @@ export const createRoomError = (error) => {
 export const createRoom = (name) => async (dispatch) => {
 	dispatch(createRoomRequest());
 	try {
-		const response = await axios.post(`${HOST}/createRoom`, { name });
+		const response = await axios.post(`${HOST}:${PORT}/createRoom`, { name });
 		dispatch(createRoomSuccess(response.data));
 	} catch (error) {
 		dispatch(createRoomError(error));
@@ -57,7 +57,7 @@ export const getRoomsError = (error) => {
 export const getRooms = () => async (dispatch) => {
 	dispatch(getRoomsRequest());
 	try {
-		const response = await axios.get(`${HOST}/rooms`);
+		const response = await axios.get(`${HOST}:${PORT}/rooms`);
 		dispatch(getRoomsSuccess(response.data));
 	} catch (error) {
 		dispatch(getRoomsError(error));
@@ -89,7 +89,7 @@ export const joinRoomError = (error) => {
 export const joinRoom = (roomId) => async (dispatch) => {
 	dispatch(joinRoomRequest());
 	try {
-		const response = await axios.get(`${HOST}/rooms/${roomId}`);
+		const response = await axios.get(`${HOST}:${PORT}/rooms/${roomId}`);
 		dispatch(joinRoomSuccess(response.data));
 	} catch (error) {
 		dispatch(joinRoomError(error));

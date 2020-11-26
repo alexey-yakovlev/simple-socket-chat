@@ -10,9 +10,15 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const io = require('socket.io')(server, {
+	cors: {
+		origin: '*',
+	},
+});
 
-const PORT = process.env.PORT || 8080;
+const isDev = process.env.NODE_ENV !== 'production';
+
+const PORT = isDev ? process.env.PORT || 8080 : 80;
 server.listen(PORT, () => {
 	console.log(`Server started on port ::${PORT}`);
 });

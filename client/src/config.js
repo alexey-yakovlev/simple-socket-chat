@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
-const PORT = process.env.REACT_APP_PORT || 8080;
+const isDev = process.env.NODE_ENV !== 'production';
+export const PORT = isDev ? process.env.REACT_APP_PORT || 8080 : 80;
+const developmentUrl = `http://localhost`;
 const productionUrl = window.location.origin;
-const developmentUrl = `http://localhost:${PORT}`;
-export const HOST = process.env.NODE_ENV === 'production' ? productionUrl : developmentUrl;
+export const HOST = isDev ? developmentUrl : productionUrl;
