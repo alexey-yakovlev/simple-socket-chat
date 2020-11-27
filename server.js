@@ -16,9 +16,8 @@ const io = require('socket.io')(server, {
 	},
 });
 
-const isDev = process.env.NODE_ENV !== 'production';
-
-const PORT = isDev ? process.env.PORT || 8080 : 80;
+// const isDev = process.env.NODE_ENV !== 'production';
+const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
 	console.log(`Server started on port ::${PORT}`);
 });
