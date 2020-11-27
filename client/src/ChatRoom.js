@@ -59,7 +59,8 @@ const ChatRoom = () => {
 	}, [currentRoom.id]);
 
 	return (
-		<div className="container">
+		// <div className="container">
+		<>
 			<div className="row">
 				<div className="column column-50">
 					<h4>
@@ -114,7 +115,8 @@ const ChatRoom = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+			{/* </div> */}
+		</>
 	);
 };
 

@@ -19,7 +19,7 @@ const AddRoom = () => {
 	};
 
 	return (
-		<div className="container" style={{ marginTop: '10%' }}>
+		<>
 			<div className="row">
 				<div className="column column-50 column-offset-25">
 					<span>Create new room</span>
@@ -42,7 +42,7 @@ const AddRoom = () => {
 					) : null}
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

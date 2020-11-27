@@ -64,29 +64,25 @@ const Home = () => {
 			)}
 
 			{username && !currentRoom && (
-				<>
+				<div className="container" style={{ marginTop: '10%' }}>
 					<AddRoom />
-					<div className="container">
-						<div className="row">
-							<div className="column column-50 column-offset-25">
-								<Rooms />
-							</div>
+					<div className="row">
+						<div className="column column-50 column-offset-25">
+							<Rooms />
 						</div>
 					</div>
-				</>
+				</div>
 			)}
 
 			{username && currentRoom && (
-				<>
+				<div className="container">
 					<ChatRoom />
-					<div className="container">
-						<div className="row">
-							<div className="column column-50">
-								<Rooms />
-							</div>
+					<div className="row">
+						<div className="column column-50">
+							<Rooms />
 						</div>
 					</div>
-				</>
+				</div>
 			)}
 		</>
 	);
