@@ -19,21 +19,29 @@ const AddRoom = () => {
 	};
 
 	return (
-		<div>
-			<span>Create new room</span>
-			<input
-				type="text"
-				name="roomName"
-				placeholder="Room name"
-				value={roomName}
-				onChange={(e) => setRoomName(e.target.value)}
-			/>
-			<button onClick={enterInChat}>Create</button>
-			{error ? (
-				<blockquote>
-					<em>Error: {error}</em>
-				</blockquote>
-			) : null}
+		<div className="container" style={{ marginTop: '10%' }}>
+			<div className="row">
+				<div className="column column-50 column-offset-25">
+					<span>Create new room</span>
+					<input
+						type="text"
+						name="roomName"
+						placeholder="Room name"
+						value={roomName}
+						onChange={(e) => setRoomName(e.target.value)}
+					/>
+				</div>
+			</div>
+			<div className="row">
+				<div className="column column-50 column-offset-25">
+					<button onClick={enterInChat}>Create</button>
+					{error ? (
+						<blockquote>
+							<em>Error: {error}</em>
+						</blockquote>
+					) : null}
+				</div>
+			</div>
 		</div>
 	);
 };

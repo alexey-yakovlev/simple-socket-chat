@@ -16,7 +16,7 @@ const Rooms = () => {
 	}, []);
 
 	return (
-		<div>
+		<>
 			{rooms && roomsData.length > 0 ? (
 				<>
 					<br />
@@ -35,7 +35,7 @@ const Rooms = () => {
 			) : (
 				<h5>No available rooms</h5>
 			)}
-		</div>
+		</>
 	);
 };
 

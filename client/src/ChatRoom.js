@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useRef } from 'react';
 import sio from 'socket.io-client';
 import { HOST, PORT } from './config';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,6 +9,13 @@ import socket from './socket';
 const ChatRoom = () => {
 	const { currentRoom, username, currentRoomMessages } = useSelector((state) => state);
 	const dispatch = useDispatch();
+	const messagesEndRef = useRef();
+
+	const scrollToBottom = () => {
+		messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+	};
+
+	useEffect(scrollToBottom, [currentRoomMessages]);
 
 	const [inputValues, setInputValues] = useReducer(
 		(state, changes) => ({ ...state, ...changes }),
@@ -52,12 +59,16 @@ const ChatRoom = () => {
 	}, [currentRoom.id]);
 
 	return (
-		<div>
-			<h4>
-				ROOM: <strong>{currentRoom.name}</strong>
-			</h4>
-			{username && (
-				<>
+		<div className="container">
+			<div className="row">
+				<div className="column column-50">
+					<h4>
+						ROOM: <strong>{currentRoom.name}</strong>
+					</h4>
+				</div>
+			</div>
+			<div className="row">
+				<div className="column column-50">
 					<div id="chatRoom" className="row">
 						<form className="column column-80">
 							<fieldset>
@@ -76,11 +87,13 @@ const ChatRoom = () => {
 											<i>{message.username}:</i> {message.text}
 										</div>
 									))}
+									<div ref={messagesEndRef} />
 								</div>
 								<br />
 								<div className="control">
 									<input
 										type="text"
+										placeholder="Input text message"
 										value={inputValues.textMessage}
 										name="textMessage"
 										onChange={handleOnChange}
@@ -99,8 +112,8 @@ const ChatRoom = () => {
 							</fieldset>
 						</form>
 					</div>
-				</>
-			)}
+				</div>
+			</div>
 		</div>
 	);
 };

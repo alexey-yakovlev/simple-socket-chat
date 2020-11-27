@@ -35,37 +35,57 @@ const Home = () => {
 	return (
 		<>
 			{!username && (
-				<div className="user">
-					<span>Enter your name before login in chat</span>
-					<input
-						type="text"
-						placeholder="Enter username"
-						value={inputValues.username}
-						name="username"
-						onChange={handleOnChange}
-					/>
-					<button onClick={setName}>Login in Chat</button>
-					{inputValues.error ? (
-						<blockquote>
-							<p>
-								<em>Error: {inputValues.error}</em>
-							</p>
-						</blockquote>
-					) : null}
+				<div className="container" style={{ marginTop: '10%' }}>
+					<div className="row">
+						<div className="column column-50 column-offset-25 ">
+							<span>Enter your name</span>
+							<input
+								type="text"
+								placeholder="Input user name"
+								value={inputValues.username}
+								name="username"
+								onChange={handleOnChange}
+							/>
+						</div>
+					</div>
+					<div className="row">
+						<div className="column column-50 column-offset-25">
+							<button onClick={setName}>Login in Chat</button>
+							{inputValues.error ? (
+								<blockquote>
+									<p>
+										<em>Error: {inputValues.error}</em>
+									</p>
+								</blockquote>
+							) : null}
+						</div>
+					</div>
 				</div>
 			)}
 
 			{username && !currentRoom && (
-				<div className="createRoom">
+				<>
 					<AddRoom />
-					<Rooms />
-				</div>
+					<div className="container">
+						<div className="row">
+							<div className="column column-50 column-offset-25">
+								<Rooms />
+							</div>
+						</div>
+					</div>
+				</>
 			)}
 
 			{username && currentRoom && (
 				<>
 					<ChatRoom />
-					<Rooms />
+					<div className="container">
+						<div className="row">
+							<div className="column column-50">
+								<Rooms />
+							</div>
+						</div>
+					</div>
 				</>
 			)}
 		</>
